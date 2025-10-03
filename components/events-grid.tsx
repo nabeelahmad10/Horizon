@@ -1,23 +1,7 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import {
-  Music,
-  Mic,
-  Palette,
-  Code,
-  Trophy,
-  Camera,
-  Gamepad2,
-  Lightbulb,
-  Sparkles,
-  Calendar,
-  Clock,
-  MapPin,
-  Users,
-} from "lucide-react"
+import { CometCard } from "@/components/ui/comet-card"
+import { Music, Mic, Palette, Code, Trophy, Camera, Gamepad2, Lightbulb, Sparkles } from "lucide-react"
 import Link from "next/link"
 
 export const eventsData = [
@@ -169,71 +153,43 @@ export const eventsData = [
 
 export function EventsGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
       {eventsData.map((event) => {
         const Icon = event.icon
         return (
-          <Card
-            key={event.id}
-            className="group relative overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-purple-500/50"
-          >
-            {/* Gradient Background */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-            />
-
-            <div className="p-6 relative z-10">
-              {/* Icon and Price */}
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className={`p-3 rounded-xl bg-gradient-to-br ${event.color} group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold">${event.price}</div>
-                  <div className="text-xs text-muted-foreground">per ticket</div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <h3 className="text-xl font-bold mb-2 group-hover:text-purple-600 transition-colors">{event.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
-
-              {/* Event Details */}
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Calendar className="w-4 h-4" />
-                  <span>{event.date}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Clock className="w-4 h-4" />
-                  <span>{event.time}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <MapPin className="w-4 h-4" />
-                  <span>{event.venue}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Users className="w-4 h-4" />
-                  <span>{event.capacity} capacity</span>
+          <CometCard key={event.id} className="h-full">
+            <Link
+              href={`/events/${event.slug}`}
+              className="block w-full cursor-pointer rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+              aria-label={`View details for ${event.title}`}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="mx-2">
+                <div className="relative mt-2 aspect-[3/4] w-full">
+                  <img
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full rounded-[16px] bg-[#000000] object-cover contrast-75"
+                    alt={`${event.title} poster`}
+                    src="/event-poster-image.jpg"
+                    style={{
+                      boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                      opacity: 1,
+                    }}
+                  />
+                  <div className={`absolute left-3 top-3 rounded-xl bg-gradient-to-br ${event.color} p-2.5`}>
+                    <Icon className="h-4 w-4 text-white" />
+                  </div>
+                  <div className="absolute right-3 top-3 rounded-md bg-black/60 px-2 py-1 text-sm font-semibold text-white">
+                    ${event.price}
+                  </div>
                 </div>
               </div>
-
-              {/* Category Badge */}
-              <div className="flex items-center justify-between">
-                <Badge variant="outline" className="text-xs">
-                  {event.category}
-                </Badge>
-                <Button size="sm" className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white" asChild>
-                  <Link href={`/events/${event.slug}`}>View Details</Link>
-                </Button>
+              <div className="mt-1 flex items-center justify-between p-3 font-mono text-white">
+                <div className="text-sm">{event.title}</div>
+                <div className="text-sm text-gray-300 opacity-70">{event.category}</div>
               </div>
-            </div>
-
-            {/* Hover Effect */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-          </Card>
+            </Link>
+          </CometCard>
         )
       })}
     </div>

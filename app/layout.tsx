@@ -7,7 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Horizon Fest 2025 | Oct 30 - Nov 1",
+  title: "Horizon Fest 2025 | Oct 29 - Nov 1",
   description:
     "Experience three days of innovation, entertainment, and celebration at Horizon Fest 2025. Organized by Directorate of Alumni Affairs."
 }

@@ -25,6 +25,7 @@ export function Navigation() {
     { href: "/my-tickets", label: "My Tickets" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
+    { href: "/daa", label: "DAA" },
   ]
 
   return (

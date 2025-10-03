@@ -1,10 +1,9 @@
 "use client"
-
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Music, Mic, Palette, Code, Trophy, Camera, Gamepad2, Lightbulb, Sparkles } from "lucide-react"
 import Link from "next/link"
+import { EventsGrid } from "@/components/events-grid"
 
 export function EventsShowcase() {
   const events = [
@@ -107,49 +106,8 @@ export function EventsShowcase() {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {events.map((event) => {
-            const Icon = event.icon
-            return (
-              <Card
-                key={event.id}
-                className="group relative overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-purple-500/50 cursor-pointer"
-              >
-                {/* Gradient Background */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                />
-
-                <div className="p-6 relative z-10">
-                  {/* Icon and Badge */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div
-                      className={`p-3 rounded-xl bg-gradient-to-br ${event.color} group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {event.date}
-                    </Badge>
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-purple-600 transition-colors">
-                    {event.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
-
-                  {/* Category Badge */}
-                  <Badge variant="outline" className="text-xs">
-                    {event.category}
-                  </Badge>
-                </div>
-
-                {/* Hover Effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </Card>
-            )
-          })}
+        <div className="mb-12">
+          <EventsGrid />
         </div>
 
         {/* View All Button */}

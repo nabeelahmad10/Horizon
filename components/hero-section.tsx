@@ -53,7 +53,7 @@ export function HeroSection() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12 animate-fade-in-up animation-delay-300">
           <div className="flex items-center gap-2 text-foreground/80">
             <Calendar className="w-5 h-5 text-purple-500" />
-            <span className="font-medium">Oct 30 - Nov 1, 2025</span>
+            <span className="font-medium">Oct 29 - Nov 1, 2025</span>
           </div>
           <div className="hidden md:block w-1 h-1 rounded-full bg-foreground/30" />
           <div className="flex items-center gap-2 text-foreground/80">

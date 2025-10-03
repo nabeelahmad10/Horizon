@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/navigation"
+import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/footer"
 import { EventsGrid } from "@/components/events-grid"
 import { Badge } from "@/components/ui/badge"
