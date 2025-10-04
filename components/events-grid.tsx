@@ -151,16 +151,22 @@ export const eventsData = [
   },
 ]
 
-export function EventsGrid() {
+interface EventsGridProps {
+  limit?: number
+}
+
+export function EventsGrid({ limit }: EventsGridProps) {
+  const displayEvents = limit ? eventsData.slice(0, limit) : eventsData
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-      {eventsData.map((event) => {
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center max-w-7xl mx-auto">
+      {displayEvents.map((event) => {
         const Icon = event.icon
         return (
-          <CometCard key={event.id} className="h-full">
+          <CometCard key={event.id} className="h-full w-full max-w-sm">
             <Link
               href={`/events/${event.slug}`}
-              className="block w-full cursor-pointer rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+              className="block w-full cursor-pointer rounded-[16px] border-0 bg-[#1F2121] p-3 md:p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
               aria-label={`View details for ${event.title}`}
               style={{ transformStyle: "preserve-3d" }}
             >
@@ -176,16 +182,16 @@ export function EventsGrid() {
                       opacity: 1,
                     }}
                   />
-                  <div className={`absolute left-3 top-3 rounded-xl bg-gradient-to-br ${event.color} p-2.5`}>
-                    <Icon className="h-4 w-4 text-white" />
+                  <div className={`absolute left-3 top-3 rounded-xl bg-gradient-to-br ${event.color} p-3`}>
+                    <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <div className="absolute right-3 top-3 rounded-md bg-black/60 px-2 py-1 text-sm font-semibold text-white">
+                  <div className="absolute right-3 top-3 rounded-md bg-black/60 px-3 py-1.5 text-base font-semibold text-white">
                     ${event.price}
                   </div>
                 </div>
               </div>
-              <div className="mt-1 flex items-center justify-between p-3 font-mono text-white">
-                <div className="text-sm">{event.title}</div>
+              <div className="mt-2 flex items-center justify-between p-3 font-mono text-white">
+                <div className="text-base font-medium">{event.title}</div>
                 <div className="text-sm text-gray-300 opacity-70">{event.category}</div>
               </div>
             </Link>
