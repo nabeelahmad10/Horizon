@@ -28,17 +28,19 @@ export default function DAAPage() {
   ];
 
   return (
-    <main className="relative min-h-screen bg-background text-foreground">
+    <main className="relative min-h-screen bg-[#0f0f0f] text-neutral-100">
       <Navigation />
 
       {/* HERO */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Gradient backgrounds */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-background to-cyan-900 opacity-80" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,rgba(0,0,0,0),rgba(0,0,0,0.65)_60%,rgba(0,0,0,0.85))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full opacity-20 blur-3xl bg-[radial-gradient(circle_at_30%_30%,rgba(229,9,20,0.6),transparent_60%)]" />
+        <div className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full opacity-15 blur-3xl bg-[radial-gradient(circle_at_60%_60%,rgba(178,7,16,0.6),transparent_60%)]" />
 
         <div className="relative z-10 container mx-auto px-4 text-center py-24">
-          <Badge className="mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white border-none shadow-lg">
+          <Badge className="mb-6 border border-[#E50914]/40 bg-[#E50914]/15 text-[#E50914] hover:bg-[#E50914]/25">
             Directorate of Alumni Affairs
           </Badge>
           <h1
@@ -47,36 +49,34 @@ export default function DAAPage() {
               transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             }}
           >
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)] bg-clip-text text-transparent">
               Building Bridges
             </span>
             <br />
-            <span className="text-foreground">Between Generations</span>
+            <span className="text-neutral-100">Between Generations</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto">
             Connecting alumni and students through mentorship, career opportunities, and lifelong relationships.
           </p>
         </div>
       </section>
 
-  
-
       {/* INITIATIVES */}
       <section className="py-20">
         <div className="container mx-auto px-4 mb-12 text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)] bg-clip-text text-transparent">
               Our Initiatives
             </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore our programs — each represents a key pillar of our mission.
+        <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
+            Explore our programs - each represents a key pillar of our mission.
           </p>
         </div>
         <DAAGallery />
       </section>
 
-          {/* STATS */}
+      {/* STATS */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -85,13 +85,13 @@ export default function DAAPage() {
               return (
                 <div
                   key={index}
-                  className="rounded-2xl p-6 text-center bg-gradient-to-b from-purple-950/40 to-cyan-950/30 border border-white/10 backdrop-blur-md shadow-lg hover:scale-105 transition-transform"
+                  className="rounded-2xl p-6 text-center bg-[#141414]/85 border border-white/10 backdrop-blur-md shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] hover:scale-105 transition-transform"
                 >
-                  <div className="inline-flex p-4 rounded-xl bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 mb-4 shadow-lg">
+                  <div className="inline-flex p-4 rounded-xl bg-[#E50914] mb-4 shadow-[0_10px_30px_-12px_rgba(229,9,20,0.6)]">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-4xl font-bold mb-2 text-white">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-sm text-neutral-400">{stat.label}</div>
                 </div>
               );
             })}

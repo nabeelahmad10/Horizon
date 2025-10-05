@@ -21,7 +21,7 @@ export function HeroSection() {
     return () => window.removeEventListener("mousemove", handle)
   }, [])
 
-  // simple particle system
+  // simple particle system (shifted to Netflix red hues)
   useEffect(() => {
     const c = canvasRef.current
     if (!c) return
@@ -45,7 +45,8 @@ export function HeroSection() {
       vx: (Math.random() - 0.5) * 0.6,
       vy: (Math.random() - 0.5) * 0.6,
       r: Math.random() * 1.2 + 0.4,
-      h: 180 + Math.random() * 180,
+      // reds: 350–10 deg wrap
+      h: (Math.random() * 20 + 350) % 360,
     }))
 
     const loop = () => {
@@ -67,7 +68,8 @@ export function HeroSection() {
         }
 
         ctx.beginPath()
-        ctx.fillStyle = `hsla(${d.h},100%,70%,0.85)`
+        // slightly deeper red luminance for cinema feel
+        ctx.fillStyle = `hsla(${d.h}, 95%, 55%, 0.85)`
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2)
         ctx.fill()
       }
@@ -84,26 +86,16 @@ export function HeroSection() {
       ref={sectionRef}
       className="
         relative min-h-screen flex items-center justify-center overflow-hidden
-        bg-gradient-to-b from-background via-background/60 to-background
+        bg-[#0f0f0f]
       "
     >
-      {/* full-screen looping video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="
-          absolute inset-0 h-full w-full object-cover object-center
-          opacity-25
-        "
-      >
-        <source src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Landing_Page_Video_Generation_Request-4NndkvzEt7FHTF7SBzIUj9RJy6rnGh.mp4' />
-      </video>
+      {/* full-screen looping video with darker overlay */}
+     
+      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,rgba(0,0,0,0.0),rgba(0,0,0,0.6)_60%,rgba(0,0,0,0.8))]" />
 
-      {/* aurora layers */}
-      <div className="pointer-events-none absolute -left-24 top-1/3 h-[48rem] w-[48rem] rounded-full blur-3xl opacity-35 bg-[radial-gradient(circle_at_30%_30%,#a855f7,transparent_60%)] animate-[spin_30s_linear_infinite]" />
-      <div className="pointer-events-none absolute -right-24 top-0 h-[50rem] w-[50rem] rounded-full blur-3xl opacity-30 bg-[radial-gradient(circle_at_70%_70%,#06b6d4,transparent_60%)] animate-[spin_42s_linear_infinite_reverse]" />
+      {/* red ambient glows */}
+      <div className="pointer-events-none absolute -left-24 top-1/3 h-[48rem] w-[48rem] rounded-full blur-3xl opacity-20 bg-[radial-gradient(circle_at_30%_30%,rgba(229,9,20,0.7),transparent_60%)] animate-[spin_32s_linear_infinite]" />
+      <div className="pointer-events-none absolute -right-24 top-0 h-[50rem] w-[50rem] rounded-full blur-3xl opacity-15 bg-[radial-gradient(circle_at_70%_70%,rgba(178,7,16,0.6),transparent_60%)] animate-[spin_44s_linear_infinite_reverse]" />
 
       {/* particle field */}
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
@@ -113,7 +105,7 @@ export function HeroSection() {
         className="
           pointer-events-none absolute inset-0
           [mask-image:radial-gradient(180px_180px_at_var(--mx)_var(--my),white,transparent_60%)]
-          bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.10),transparent_55%)]
+          bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.08),transparent_55%)]
         "
       />
 
@@ -131,8 +123,8 @@ export function HeroSection() {
               key={i}
               className="
                 inline-block bg-clip-text text-transparent
-                bg-[conic-gradient(from_180deg,theme(colors.purple.500),theme(colors.fuchsia.500),theme(colors.cyan.400),theme(colors.purple.500))]
-                drop-shadow-[0_10px_30px_rgba(168,85,247,0.35)]
+                bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)]
+                drop-shadow-[0_10px_30px_rgba(229,9,20,0.35)]
                 animate-letter-bob
               "
               style={{ animationDelay: `${i * 80}ms` }}
@@ -142,14 +134,14 @@ export function HeroSection() {
           ))}
         </h1>
 
-        <p className="mx-auto mb-6 max-w-3xl text-base sm:text-xl text-white/70">
+        <p className="mx-auto mb-6 max-w-3xl text-base sm:text-xl text-neutral-200/80">
           Where innovation crashes into celebration — no spectators, only main characters.
         </p>
 
         <div className="mx-auto mb-10 flex w-full max-w-2xl flex-col items-center justify-center gap-4 sm:flex-row">
-          <Meta icon={<Calendar className="h-5 w-5 text-purple-400" />} label="Oct 29 – Nov 1, 2025" />
-          <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:block" />
-          <Meta icon={<MapPin className="h-5 w-5 text-cyan-400" />} label="9 events • Main Campus" />
+          <Meta icon={<Calendar className="h-5 w-5 text-[#E50914]" />} label="Oct 29 – Nov 1, 2025" />
+          <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
+          <Meta icon={<MapPin className="h-5 w-5 text-neutral-300" />} label="9 events • Main Campus" />
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -157,10 +149,10 @@ export function HeroSection() {
             size="lg"
             className="
               relative overflow-hidden px-8 py-6 text-base text-white
-              bg-gradient-to-r from-purple-600 via-fuchsia-600 to-cyan-600
-              shadow-[0_10px_40px_-10px_rgba(99,102,241,.6)]
-              hover:shadow-[0_14px_50px_-10px_rgba(99,102,241,.75)]
-              before:absolute before:-inset-1 before:bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,.4),transparent)]
+              bg-[#E50914] hover:bg-[#B20710]
+              shadow-[0_10px_40px_-10px_rgba(229,9,20,.55)]
+              hover:shadow-[0_14px_50px_-10px_rgba(229,9,20,.7)]
+              before:absolute before:-inset-1 before:bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,.25),transparent)]
               before:opacity-0 hover:before:opacity-100 before:blur-xl before:transition-opacity
             "
             asChild
@@ -174,7 +166,7 @@ export function HeroSection() {
             size="lg"
             variant="outline"
             className="
-              px-8 py-6 text-base border-white/30 text-white/90 backdrop-blur
+              px-8 py-6 text-base border-white/20 text-neutral-200 backdrop-blur
               hover:bg-white/10 hover:text-white
             "
             asChild
@@ -184,15 +176,14 @@ export function HeroSection() {
         </div>
 
         <div className="mt-12 overflow-hidden">
-          <div className="animate-marquee whitespace-nowrap text-xs tracking-wider text-white/50">
+          <div className="animate-marquee whitespace-nowrap text-xs tracking-wider text-neutral-400">
             <span className="mx-4">SHOWCASE</span>•<span className="mx-4">GUEST TALKS</span>•<span className="mx-4">FILM NIGHT</span>•<span className="mx-4">WORKSHOPS</span>•<span className="mx-4">ART & MAKERS</span>•
           </div>
         </div>
 
         <div className="pointer-events-none mt-10 flex items-center justify-center">
-          <div className="flex animate-breathe items-center gap-2 text-white/60">
+          <div className="flex animate-breathe items-center gap-2 text-neutral-300/70">
             <ChevronDown className="h-5 w-5" />
-           
           </div>
         </div>
       </div>
@@ -226,7 +217,7 @@ export function HeroSection() {
 
 function Meta({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur-md">
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm text-neutral-200/85 backdrop-blur-md">
       {icon}
       <span className="font-medium">{label}</span>
     </div>

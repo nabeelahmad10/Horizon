@@ -24,7 +24,7 @@ export const GoogleGeminiEffect = ({
     // Sticky viewport: freezes the screen at this section while user scrolls
     <div
       className={cn(
-        "sticky top-0 min-h-screen overflow-visible overflow-x-clip pt-28 md:pt-32",
+        "sticky top-0 min-h-screen overflow-visible overflow-x-clip pt-28 md:pt-32 bg-[#0f0f0f]",
         className
       )}
     >
@@ -33,7 +33,8 @@ export const GoogleGeminiEffect = ({
         className="
           text-4xl md:text-6xl font-bold tracking-tight text-center
           bg-clip-text text-transparent
-          bg-gradient-to-r from-purple-500 via-pink-400 to-cyan-400
+          bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)]
+          drop-shadow-[0_10px_30px_rgba(229,9,20,0.35)]
           px-4 pb-1
         "
       >
@@ -43,7 +44,7 @@ export const GoogleGeminiEffect = ({
       {/* Description */}
       <p
         className="
-          text-sm md:text-lg font-normal text-center text-neutral-300
+          text-sm md:text-lg font-normal text-center text-neutral-300/80
           mt-2 mb-8 md:mb-10 max-w-2xl mx-auto px-4 leading-relaxed
         "
       >
@@ -56,7 +57,7 @@ export const GoogleGeminiEffect = ({
         <Link href={buttonLink || "#"}>
           <motion.button
             style={{ opacity: buttonOpacity }}
-            className="z-30 mx-auto w-fit rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 px-4 py-2 text-xs font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 md:px-8 md:py-3 md:text-base"
+            className="z-30 mx-auto w-fit rounded-full bg-[#E50914] hover:bg-[#B20710] px-4 py-2 text-xs font-bold text-white shadow-[0_10px_40px_-10px_rgba(229,9,20,.55)] hover:shadow-[0_14px_50px_-10px_rgba(229,9,20,.7)] transition-all duration-300 hover:scale-105 md:px-8 md:py-3 md:text-base"
           >
             {buttonText || "Book Tickets"}
           </motion.button>
@@ -77,10 +78,10 @@ export const GoogleGeminiEffect = ({
           mix-blend-screen
         "
       >
-        {/* LINE 1 (violet) */}
+        {/* LINE 1 (Netflix Red) */}
         <motion.path
           d="M 0 650 C 260 650, 360 640, 470 565 C 540 515, 640 505, 720 520 C 800 535, 880 560, 960 520"
-          stroke="#A855F7"
+          stroke="#E50914"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -90,7 +91,7 @@ export const GoogleGeminiEffect = ({
         />
         <motion.path
           d="M 0 650 C 260 650, 360 640, 470 565 C 540 515, 640 505, 720 520 C 800 535, 880 560, 960 520"
-          stroke="#A855F7"
+          stroke="#E50914"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -100,10 +101,10 @@ export const GoogleGeminiEffect = ({
           transform="translate(1920 0) scale(-1 1)"
         />
 
-        {/* LINE 2 (pink) */}
+        {/* LINE 2 (Deep Red) */}
         <motion.path
           d="M 0 590 C 280 590, 410 575, 540 530 C 640 495, 780 505, 960 520"
-          stroke="#EC4899"
+          stroke="#B20710"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -113,7 +114,7 @@ export const GoogleGeminiEffect = ({
         />
         <motion.path
           d="M 0 590 C 280 590, 410 575, 540 530 C 640 495, 780 505, 960 520"
-          stroke="#EC4899"
+          stroke="#B20710"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -123,10 +124,10 @@ export const GoogleGeminiEffect = ({
           transform="translate(1920 0) scale(-1 1)"
         />
 
-        {/* LINE 3 (cyan straight) */}
+        {/* LINE 3 (Soft White) */}
         <motion.path
           d="M 0 520 L 960 520"
-          stroke="#06B6D4"
+          stroke="rgba(255,255,255,0.3)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -136,7 +137,7 @@ export const GoogleGeminiEffect = ({
         />
         <motion.path
           d="M 0 520 L 960 520"
-          stroke="#06B6D4"
+          stroke="rgba(255,255,255,0.3)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -146,10 +147,10 @@ export const GoogleGeminiEffect = ({
           transform="translate(1920 0) scale(-1 1)"
         />
 
-        {/* LINE 4 (purple) */}
+        {/* LINE 4 (Red Accent) */}
         <motion.path
           d="M 0 450 C 240 450, 360 470, 480 510 C 610 555, 760 560, 960 520"
-          stroke="#8B5CF6"
+          stroke="rgba(229,9,20,0.8)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -159,7 +160,7 @@ export const GoogleGeminiEffect = ({
         />
         <motion.path
           d="M 0 450 C 240 450, 360 470, 480 510 C 610 555, 760 560, 960 520"
-          stroke="#8B5CF6"
+          stroke="rgba(229,9,20,0.8)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -169,10 +170,10 @@ export const GoogleGeminiEffect = ({
           transform="translate(1920 0) scale(-1 1)"
         />
 
-        {/* LINE 5 (magenta) */}
+        {/* LINE 5 (Dark Red) */}
         <motion.path
           d="M 0 700 C 300 700, 420 685, 560 600 C 700 515, 820 520, 960 520"
-          stroke="#F472B6"
+          stroke="rgba(178,7,16,0.8)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -182,7 +183,7 @@ export const GoogleGeminiEffect = ({
         />
         <motion.path
           d="M 0 700 C 300 700, 420 685, 560 600 C 700 515, 820 520, 960 520"
-          stroke="#F472B6"
+          stroke="rgba(178,7,16,0.8)"
           strokeWidth="2"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"

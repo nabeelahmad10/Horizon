@@ -32,7 +32,8 @@ export const CometCard = ({
   const glareX = useTransform(mouseXSpring, [-0.5, 0.5], [0, 100])
   const glareY = useTransform(mouseYSpring, [-0.5, 0.5], [0, 100])
 
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0) 80%)`
+  // Netflix red-tinted glare
+  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(229, 9, 20, 0.85) 10%, rgba(229, 9, 20, 0.55) 20%, rgba(229, 9, 20, 0) 80%)`
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return
@@ -67,8 +68,9 @@ export const CometCard = ({
           rotateY,
           translateX,
           translateY,
+          // Subtle cinematic shadow with red glow
           boxShadow:
-            "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px",
+            "rgba(0, 0, 0, 0.02) 0px 520px 146px 0px, rgba(0, 0, 0, 0.06) 0px 333px 133px 0px, rgba(0, 0, 0, 0.28) 0px 83px 83px 0px, rgba(0, 0, 0, 0.30) 0px 21px 46px 0px, rgba(229, 9, 20, 0.35) 0px 18px 60px -10px",
         }}
         initial={{ scale: 1, z: 0 }}
         whileHover={{
