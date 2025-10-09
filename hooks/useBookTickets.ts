@@ -1,38 +1,42 @@
-const API_URL_BOOKINGS = "https://kcztjkigohnoemokrnzh.supabase.co/rest/v1/bookings"; // <-- replace with your bookings table endpoint
+const BOOKING_API_URL = "https://kcztjkigohnoemokrnzh.supabase.co/rest/v1/tickets";
 const API_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export async function bookTickets({
+export async function bookTicket({
   eventId,
   userId,
-  quantity,
-  ticketPrice,
-  total,
+  type,
+  price,
+  seatNumber,    // optional
+  qrCode,        // optional
 }: {
   eventId: number;
-  userId: number;   // supply your user id!
-  quantity: number;
-  ticketPrice: number;
-  total: number;
+  userId: number;
+  type: string;
+  price: number;
+  seatNumber?: string;
+  qrCode?: string;
 }) {
-  const res = await fetch(API_URL_BOOKINGS, {
+  const res = await fetch(BOOKING_API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       apikey: API_KEY!,
       Authorization: `Bearer ${API_KEY!}`,
-      Prefer: "return=representation", // for Supabase to return created record
+      Prefer: "return=representation",
     },
     body: JSON.stringify({
       event_id: eventId,
       user_id: userId,
-      quantity,
-      price: ticketPrice,
-      total,
-      // Add other columns if needed (timestamp, status, etc.)
+      type,
+      price,
+      status: "booked",  // You may use "available", "booked", etc.
+      seat_number: seatNumber ?? null,
+      qr_code: qrCode ?? null,
+      purchase_time: new Date().toISOString(),
+      // created_at will auto-populate if it's a default
     }),
   });
-  if (!res.ok) {
-    throw new Error("Failed to book tickets");
-  }
-  return await res.json();
+  if (!res.ok) throw new Error("Booking failed");
+  return await res.json(); // Returns created ticket row
 }
+
