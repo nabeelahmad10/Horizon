@@ -30,7 +30,7 @@ export function Navigation() {
       { href: "/schedule", label: "Schedule" },
       { href: "/my-tickets", label: "My Tickets" },
       { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
+   //   { href: "/contact", label: "Contact" },
       { href: "/daa", label: "DAA" },
     ],
     [],

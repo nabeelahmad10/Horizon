@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react"
+import Link from "next/link";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   const footerLinks = {
@@ -23,7 +23,7 @@ export function Footer() {
       { label: "My Tickets", href: "/my-tickets" },
       { label: "Profile", href: "/profile" },
     ],
-  }
+  };
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#0f0f0f]">
@@ -63,21 +63,71 @@ export function Footer() {
               <Link href="/" className="mb-5 flex items-center gap-3">
                 <div>
                   <h3 className="text-xl font-extrabold tracking-tight text-white">
-                    <span className="text-[#E50914] drop-shadow-[0_0_18px_rgba(229,9,20,0.35)]">HORIZON</span>
+                    <span className="text-[#E50914] drop-shadow-[0_0_18px_rgba(229,9,20,0.35)]">
+                      HORIZON
+                    </span>
                   </h3>
                   <p className="text-xs text-white/60">by DAA</p>
                 </div>
               </Link>
 
               <p className="mb-5 max-w-sm text-sm text-white/75">
-                Experience three days of innovation, entertainment, and celebration at Horizon Fest 2025.
+                Experience three days of innovation, entertainment, and
+                celebration at Horizon Fest 2025.
               </p>
 
               {/* Contact chips */}
               <div className="flex flex-col gap-2 text-sm">
-                <InfoChip icon={<Mail className="h-4 w-4" />} label="info@daa.srmist.edu.in" />
-                <InfoChip icon={<Phone className="h-4 w-4" />} label="+91 9500000009" />
-                <InfoChip icon={<MapPin className="h-4 w-4" />} label="UB 4th Floor" />
+                <InfoChip
+                  icon={<Mail className="h-4 w-4" />}
+                  label={
+                    <a
+                      href="mailto:alumni@srmist.edu.in"
+                      className="hover:underline text-inherit"
+                      rel="noopener noreferrer"
+                    >
+                      alumni@srmist.edu.in
+                    </a>
+                  }
+                />
+                <InfoChip
+                  icon={<Phone className="h-4 w-4" />}
+                  label={
+                    <a
+                      href="tel:+919007488910"
+                      className="hover:underline text-inherit"
+                    >
+                      Krishanu Mahapatra: +91 90074 88910
+                    </a>
+                  }
+                />
+                <InfoChip
+                  icon={<Phone className="h-4 w-4" />}
+                  label={
+                    <a
+                      href="tel:+917869431388"
+                      className="hover:underline text-inherit"
+                    >
+                      Aviral Samdaria: +91 78694 31388
+                    </a>
+                  }
+                />
+                <InfoChip
+                  icon={<MapPin className="h-4 w-4" />}
+                  label={
+                    <a
+                      href="https://maps.app.goo.gl/2AM5w3bBXZsaETxB7"
+                      className="hover:underline text-inherit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Directorate of Alumni Affairs,<br />
+                      Room No 17, 4th Floor, University Building,<br />
+                      Kattankulathur – 603 203<br />
+                      Chennai, Tamil Nadu
+                    </a>
+                  }
+                />
               </div>
             </div>
 
@@ -119,7 +169,8 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="relative mt-10 flex flex-col items-center justify-between gap-5 border-t border-white/10 pt-6 md:flex-row">
             <p className="text-sm text-white/60">
-              © 2025 Horizon Fest. Organized by Directorate of Alumni Affairs. All rights reserved.
+              © 2025 Horizon Fest. Organized by Directorate of Alumni Affairs.
+              All rights reserved.
             </p>
 
             {/* tiny pill links */}
@@ -140,26 +191,36 @@ export function Footer() {
       {/* keyframes via arbitrary animate classes */}
       <style jsx>{`
         @keyframes slide {
-          0% { transform: translateX(-25%); }
-          100% { transform: translateX(0%); }
+          0% {
+            transform: translateX(-25%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
         }
       `}</style>
     </footer>
-  )
+  );
 }
 
 /* ---------- Little subcomponents for polish ---------- */
 
-function InfoChip({ icon, label }: { icon: React.ReactNode; label: string }) {
+function InfoChip({ icon, label }: { icon: React.ReactNode; label: React.ReactNode }) {
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-neutral-200/85 backdrop-blur-md transition-all hover:border-[#E50914]/40 hover:bg-white/[0.12] hover:text-white">
       <span className="text-[#E50914]">{icon}</span>
       <span>{label}</span>
     </div>
-  )
+  );
 }
 
-function PillLink({ href, children }: { href: string; children: React.ReactNode }) {
+function PillLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Link
       href={href}
@@ -172,5 +233,5 @@ function PillLink({ href, children }: { href: string; children: React.ReactNode 
     >
       {children}
     </Link>
-  )
+  );
 }
