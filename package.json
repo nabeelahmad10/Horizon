@@ -69,6 +69,7 @@
     "scheduler": "^0.27.0",
     "sonner": "^1.7.4",
     "stripe": "latest",
+    "swr": "^2.3.6",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.157.0",
