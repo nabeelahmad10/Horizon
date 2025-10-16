@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import { bookTicket } from "@/hooks/useBookTickets";
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Ticket, CreditCard, User, Lock } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabaseClient"
 
 interface BookingData {
   eventId: number
@@ -20,6 +21,8 @@ interface BookingData {
   subtotal: number
   serviceFee: number
   total: number
+  seatNumber?: string
+  qrCode?: string
 }
 
 export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
@@ -48,6 +51,33 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
     // Simulate payment processing
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
+    // Get authenticated user's id from Supabase Auth
+    const { data: { user } } = await supabase.auth.getUser()
+    const currentUserId = user?.id
+
+    if (!currentUserId) {
+      setIsProcessing(false)
+      alert("You need to be logged in to book a ticket.")
+      return
+    }
+
+    // CREATE booking POST in Supabase
+    try {
+      await bookTicket({
+        eventId: bookingData.eventId,
+        userId: currentUserId,
+        type: "General", // If you support ticket types, replace accordingly
+        price: bookingData.price,
+        seatNumber: bookingData.seatNumber,
+        qrCode: bookingData.qrCode,
+      })
+      // Success: Proceed as usual
+    } catch (err) {
+      setIsProcessing(false)
+      alert("There was a problem booking your ticket. Please try again.")
+      return
+    }
+
     // Store confirmation data
     const confirmationData = {
       ...bookingData,
@@ -58,7 +88,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
 
     sessionStorage.setItem("confirmationData", JSON.stringify(confirmationData))
     sessionStorage.removeItem("bookingData")
-
     router.push("/booking-confirmation")
   }
 
@@ -77,7 +106,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
             </h1>
             <p className="text-muted-foreground">Just a few more steps to secure your tickets</p>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Checkout Form */}
             <div className="lg:col-span-2">
@@ -130,7 +158,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                     </div>
                   </div>
                 </Card>
-
                 {/* Payment Information */}
                 <Card className="p-6 mb-6">
                   <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
@@ -177,7 +204,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                       </div>
                     </div>
                   </div>
-
                   <div className="mt-6 p-4 bg-muted/50 rounded-lg flex items-start gap-3">
                     <Lock className="w-5 h-5 text-green-500 mt-0.5" />
                     <div className="text-sm">
@@ -188,7 +214,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                     </div>
                   </div>
                 </Card>
-
                 {/* Submit Button */}
                 <Button
                   type="submit"
@@ -207,7 +232,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                 </Button>
               </form>
             </div>
-
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-24">
@@ -216,7 +240,6 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                     <Ticket className="w-5 h-5 text-purple-500" />
                     Order Summary
                   </h2>
-
                   <div className="space-y-4 mb-6">
                     <div>
                       <div className="font-semibold mb-1">{bookingData.eventTitle}</div>
@@ -224,9 +247,7 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                         {bookingData.quantity} {bookingData.quantity === 1 ? "Ticket" : "Tickets"}
                       </div>
                     </div>
-
                     <Separator />
-
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-muted-foreground">Subtotal</span>
@@ -237,15 +258,12 @@ export function CheckoutForm({ bookingData }: { bookingData: BookingData }) {
                         <span>${bookingData.serviceFee.toFixed(2)}</span>
                       </div>
                     </div>
-
                     <Separator />
-
                     <div className="flex items-center justify-between text-lg font-bold">
                       <span>Total</span>
                       <span className="text-purple-600">${bookingData.total.toFixed(2)}</span>
                     </div>
                   </div>
-
                   <div className="space-y-2 pt-4 border-t border-border">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
