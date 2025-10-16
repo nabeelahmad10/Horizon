@@ -7,17 +7,33 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Minus, Plus, ArrowLeft, ShoppingCart } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useTickets } from "@/hooks/useTickets"
+
+type TicketStatus = "available" | "booked" | "cancelled";
+interface Ticket {
+  id: number;
+  event_id: number;
+  type: string;
+  price: number;
+  status: TicketStatus;
+  created_at: string;
+}
 
 interface Event {
-  id: number
-  slug: string
-  title: string
-  price: number
+  id: number;
+  slug: string;
+  title: string;
+  price: number;
 }
 
 export function TicketSelector({ event, onBack }: { event: Event; onBack: () => void }) {
   const [quantity, setQuantity] = useState(1)
   const router = useRouter()
+
+  // Fetch tickets for this event from backend
+  const { tickets, isLoading, error } = useTickets(event.id)
+  const availableTickets = tickets.filter((t: Ticket) => t.status === "available")
+  const ticketPrice = availableTickets.length > 0 ? availableTickets[0].price : event.price
 
   const handleQuantityChange = (delta: number) => {
     const newQuantity = quantity + delta
@@ -26,19 +42,18 @@ export function TicketSelector({ event, onBack }: { event: Event; onBack: () => 
     }
   }
 
-  const subtotal = event.price * quantity
+  const subtotal = ticketPrice * quantity
   const serviceFee = subtotal * 0.05
   const total = subtotal + serviceFee
 
   const handleProceedToCheckout = () => {
-    // Store booking data in sessionStorage
     sessionStorage.setItem(
       "bookingData",
       JSON.stringify({
         eventId: event.id,
         eventTitle: event.title,
         quantity,
-        price: event.price,
+        price: ticketPrice,
         subtotal,
         serviceFee,
         total,
@@ -46,6 +61,10 @@ export function TicketSelector({ event, onBack }: { event: Event; onBack: () => 
     )
     router.push("/checkout")
   }
+
+  if (isLoading) return <div>Loading ticket info…</div>
+  if (error) return <div>Error loading ticket info</div>
+  if (!availableTickets.length) return <div>No tickets available for this event.</div>
 
   return (
     <Card className="p-6 border-2 border-purple-500/20">
@@ -125,3 +144,4 @@ export function TicketSelector({ event, onBack }: { event: Event; onBack: () => 
     </Card>
   )
 }
+
