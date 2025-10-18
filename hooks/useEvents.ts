@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
-import type { PostgrestError } from '@supabase/supabase-js';
-// Make sure the Event interface is imported from your components, or paste it here!
+//import type { PostgrestError } from '@supabase/supabase-js';
+import useSWR from 'swr';
 import {
   Music, Mic, Palette, Code, Trophy, Camera, Gamepad2, Lightbulb, Sparkles
 } from "lucide-react";
@@ -37,20 +36,28 @@ export interface Event {
   longDescription?: string;
   created_at?: string;
 }
+const workerApiUrl = process.env.NEXT_PUBLIC_WORKER_API_URL;
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
 
 export function useEvents() {
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<PostgrestError | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     async function fetchEvents() {
-      const { data, error } = await supabase
-        .from('events')
-        .select('*');
-      setEvents((Array.isArray(data) ? data : []) as Event[]);
-      setError(error);
-      setIsLoading(false);
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_WORKER_API_URL;
+        const res = await fetch(`${apiUrl}/api/events`);
+        if (!res.ok) throw new Error("Failed to fetch events");
+        const data = await res.json();
+        setEvents(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchEvents();
   }, []);
