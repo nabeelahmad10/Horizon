@@ -54,6 +54,7 @@ export function useEvents() {
         const data = await res.json();
         setEvents(Array.isArray(data) ? data : []);
       } catch (err) {
+        console.error("Failed to fetch events", err);
         setError(err as Error);
       } finally {
         setIsLoading(false);
