@@ -2,7 +2,7 @@ import { Pool } from '@neondatabase/serverless';
 
 function withCors(response) {
   const headers = new Headers(response.headers);
-  headers.set('Access-Control-Allow-Origin', '*');
+  headers.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   headers.set('Access-Control-Allow-Headers', 'Content-Type');
   return new Response(response.body, {
@@ -16,10 +16,17 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // For OPTIONS (preflight)
-    if (request.method === 'OPTIONS') {
-      return withCors(new Response('', { status: 204 }));
+   // For OPTIONS (preflight)
+if (request.method === 'OPTIONS') {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     }
+  });
+}
 
     // For GET /api/events
     if (request.method === 'GET' && url.pathname === '/api/events') {
