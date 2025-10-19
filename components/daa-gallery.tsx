@@ -1,72 +1,110 @@
-"use client"
+"use client";
 
-import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card"
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function DAAGallery() {
   const items = [
     {
-      title: "Alumni Network",
-      description: "Connect with 50,000+ alumni worldwide",
-      image: "/professional-networking-event.png",
-      className: "absolute top-10 left-[20%] rotate-[-5deg]",
+      id: "global-tech-conclave",
+      title: "Global Tech Conclave",
+      description:
+        "Guidance. Growth. Great minds — SRM Global Tech Conclave 2024.",
+      image: "/events/gtc.jpeg",
     },
     {
-      title: "Career Development",
-      description: "Mentorship programs and career guidance",
-      image: "/career-mentorship-meeting.jpg",
-      className: "absolute top-40 left-[25%] rotate-[-7deg]",
+      id: "global-meet-2025",
+      title: "Global Meet 2025",
+      description: "Where global minds reunite to inspire, connect, and grow.",
+      image: "/events/gm25.JPG",
     },
     {
-      title: "Innovation Hub",
-      description: "Fostering entrepreneurship and startups",
-      image: "/innovation-startup-workspace.jpg",
-      className: "absolute top-5 left-[40%] rotate-[8deg]",
+      id: "elevate",
+      title: "Elevate",
+      description: "Learning, growing, and rising together",
+      image: "/events/roadshow.JPG",
     },
     {
-      title: "Global Events",
-      description: "Annual reunions and networking events",
-      image: "/large-conference-event.jpg",
-      className: "absolute top-32 left-[55%] rotate-[10deg]",
+      id: "chapter-meetups",
+      title: "Chapter Meetups",
+      description: "Reconnect, reminisce, and celebrate the SRM spirit",
+      image: "/events/chmeet.jpeg",
     },
     {
-      title: "Student Support",
-      description: "Scholarships and financial aid programs",
-      image: "/students-studying.png",
-      className: "absolute top-20 right-[35%] rotate-[2deg]",
+      id: "alumni-day",
+      title: "Alumni Day",
+      description: "A day of nostalgia, pride, and timeless SRM connections.",
+      image: "/events/alumniday.jpg",
     },
     {
-      title: "Research Collaboration",
-      description: "Industry-academia partnerships",
-      image: "/research-laboratory-collaboration.jpg",
-      className: "absolute top-24 left-[45%] rotate-[-7deg]",
+      id: "embrace",
+      title: "Embrace",
+      description: "Recognition, camaraderie, inspiration",
+      image: "/events/embrace.jpeg",
     },
-    {
-      title: "Community Impact",
-      description: "Social initiatives and volunteering",
-      image: "/community-volunteering-event.jpg",
-      className: "absolute top-8 left-[30%] rotate-[4deg]",
-    },
-  ]
+  ];
+
+  const plugin = useRef(Autoplay({ delay: 1300, stopOnInteraction: true }));
 
   return (
-    <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip bg-background">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-
-      <p className="absolute top-1/2 mx-auto max-w-3xl -translate-y-3/4 text-center text-3xl md:text-5xl font-black text-primary/20 px-4 leading-tight">
-        Drag and explore our initiatives. Building bridges between alumni and students.
-      </p>
-
-      {items.map((item, index) => (
-        <DraggableCardBody key={index} className={item.className}>
-          <img
-            src={item.image || "/placeholder.svg"}
-            alt={item.title}
-            className="pointer-events-none relative z-10 h-80 w-80 object-cover rounded-lg"
-          />
-          <h3 className="mt-4 text-center text-2xl font-bold text-foreground">{item.title}</h3>
-          <p className="mt-2 text-center text-sm text-muted-foreground">{item.description}</p>
-        </DraggableCardBody>
-      ))}
-    </DraggableCardContainer>
-  )
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-[#0f0f0f] text-neutral-100">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-12 text-[#E50914]">
+          Explore Our Initiatives
+        </h2>
+        <Carousel
+          plugins={[plugin.current]}
+          opts={{ align: "start", loop: true }}
+          className="w-full max-w-4xl mx-auto"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent>
+            {items.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="md:basis-1/2 lg:basis-1/3 group"
+              >
+                <Link href={`/initiatives#${item.id}`}>
+                  <div className="p-1">
+                    <Card className="overflow-hidden border border-neutral-800 bg-neutral-900 transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:shadow-[#E50914]/30 group-hover:border-[#E50914] group-hover:-translate-y-1">
+                      <CardContent className="flex flex-col items-center justify-center p-6">
+                        <div className="relative w-full aspect-video mb-4 rounded-md overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                        </div>
+                        <h3 className="text-xl font-semibold text-center text-neutral-100 transition-colors duration-300 group-hover:text-[#E50914]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-center text-neutral-400 transition-colors duration-300 group-hover:text-neutral-200">
+                          {item.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="text-neutral-400 hover:text-[#E50914] hover:border-[#E50914] transition-colors duration-300" />
+          <CarouselNext className="text-neutral-400 hover:text-[#E50914] hover:border-[#E50914] transition-colors duration-300" />
+        </Carousel>
+      </div>
+    </section>
+  );
 }

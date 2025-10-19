@@ -1,23 +1,28 @@
-"use client"
-import type React from "react"
-import { useRef } from "react"
-import { useScroll, useTransform, motion, type MotionValue } from "motion/react"
+"use client";
+import type React from "react";
+import { useRef } from "react";
+import {
+  useScroll,
+  useTransform,
+  motion,
+  type MotionValue,
+} from "framer-motion";
 
 export const ContainerScroll = ({
   titleComponent,
   children,
 }: {
-  titleComponent: string | React.ReactNode
-  children: React.ReactNode
+  titleComponent: string | React.ReactNode;
+  children: React.ReactNode;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-  })
+  });
 
-  const rotate = useTransform(scrollYProgress, [0, 0.6], [35, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1.05, 1])
-  const translate = useTransform(scrollYProgress, [0, 0.6], [0, -80])
+  const rotate = useTransform(scrollYProgress, [0, 0.6], [35, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1.05, 1]);
+  const translate = useTransform(scrollYProgress, [0, 0.6], [0, -80]);
 
   return (
     <div
@@ -36,8 +41,8 @@ export const ContainerScroll = ({
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const Header = ({ translate, titleComponent }: any) => {
   return (
@@ -49,18 +54,18 @@ export const Header = ({ translate, titleComponent }: any) => {
     >
       {titleComponent}
     </motion.div>
-  )
-}
+  );
+};
 
 export const Card = ({
   rotate,
   scale,
   children,
 }: {
-  rotate: MotionValue<number>
-  scale: MotionValue<number>
-  translate: MotionValue<number>
-  children: React.ReactNode
+  rotate: MotionValue<number>;
+  scale: MotionValue<number>;
+  translate: MotionValue<number>;
+  children: React.ReactNode;
 }) => {
   return (
     <motion.div
@@ -76,5 +81,5 @@ export const Card = ({
         {children}
       </div>
     </motion.div>
-  )
-}
+  );
+};
