@@ -49,12 +49,13 @@ export function useEvents() {
     async function fetchEvents() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_WORKER_API_URL;
-        const res = await fetch(`${apiUrl}/api/events`);
+        //const res = await fetch(`${apiUrl}/api/events`);
+        const res = await fetch(`${workerApiUrl}/api/events`);
         if (!res.ok) throw new Error("Failed to fetch events");
         const data = await res.json();
         setEvents(Array.isArray(data) ? data : []);
       } catch (err) {
-        console.error("Failed to fetch events", err);
+        console.error("Failed to fetch events", err);2
         setError(err as Error);
       } finally {
         setIsLoading(false);
