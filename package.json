@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -44,9 +45,13 @@
     "@supabase/supabase-js": "^2.74.0",
     "@tabler/icons-react": "^3.35.0",
     "@vercel/analytics": "^1.5.0",
+=======
+    "@radix-ui/react-slot": "^1.0.2",
+>>>>>>> ecf1cec (feat: Add About/Initiatives pages and update core components)
     "autoprefixer": "^10.4.21",
-    "class-variance-authority": "^0.7.1",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+<<<<<<< HEAD
     "cmdk": "1.0.4",
     "date-fns": "4.1.0",
     "embla-carousel-react": "8.5.1",
@@ -78,17 +83,30 @@
     "vaul": "^0.9.9",
     "world-atlas": "^2.0.2",
     "zod": "3.25.67"
+=======
+    "embla-carousel-autoplay": "^8.1.3",
+    "embla-carousel-react": "^8.1.3",
+    "framer-motion": "^12.23.24",
+    "geist": "^1.5.1",
+    "lucide-react": "^0.383.0",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
+>>>>>>> ecf1cec (feat: Add About/Initiatives pages and update core components)
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.9",
-    "@types/node": "^22",
+    "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/three": "^0.180.0",
-    "@types/topojson-client": "^3.1.5",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.14",
-    "tw-animate-css": "1.3.3",
-    "typescript": "^5.9.3"
+    "tailwindcss": "^3.4.18",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "embla-carousel": "^8.1.3"
   }
 }

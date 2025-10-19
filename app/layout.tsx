@@ -1,10 +1,11 @@
-import type React from "react";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Suspense } from "react";
-import "./globals.css";
-import {Navigation} from "@/components/Navigation"; // <-- Add this import
+import type React from "react"
+import type { Metadata } from "next"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { Suspense } from "react"
+import { Poppins } from "next/font/google";
+import "./globals.css"
+
 
 export const metadata: Metadata = {
   title: "Horizon Fest 2025 | Oct 30 - Nov 1",

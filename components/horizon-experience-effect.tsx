@@ -1,5 +1,5 @@
 "use client"
-import { useScroll, useTransform, useMotionValue } from "motion/react"
+import { useScroll, useTransform, useMotionValue } from "framer-motion";
 import React, { useEffect } from "react"
 import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect"
 

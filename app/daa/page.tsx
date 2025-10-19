@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { DAAGallery } from "@/components/daa-gallery";
 import { Badge } from "@/components/ui/badge";
 import { Users, Target, Lightbulb, Heart } from "lucide-react";
+import CoreTeam from "@/components/core-team"; // <-- add this
 
 export default function DAAPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -28,7 +29,13 @@ export default function DAAPage() {
   ];
 
   return (
-    <main className="relative min-h-screen bg-[#0f0f0f] text-neutral-100">
+    <main
+      className="relative min-h-screen bg-[#0f0f0f] text-neutral-100"
+      style={{
+        fontFamily:
+          "SF Pro, Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto",
+      }}
+    >
       <Navigation />
 
       {/* HERO */}
@@ -49,30 +56,47 @@ export default function DAAPage() {
               transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             }}
           >
-            <span className="bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)] bg-clip-text text-transparent">
-              Building Bridges
-            </span>
+            <span className="text-[#f41414]">Building Bridges</span>
             <br />
-            <span className="text-neutral-100">Between Generations</span>
+            <span
+              className="text-neutral-200"
+              style={{ fontStyle: "italic", fontWeight: 500 }}
+            >
+              Between Generations
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto">
-            Connecting alumni and students through mentorship, career opportunities, and lifelong relationships.
+          <p
+            className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto"
+            style={{ color: "#E6E2DA" }}
+          >
+            Connecting alumni and students through mentorship, career
+            opportunities, and lifelong relationships.
           </p>
         </div>
       </section>
 
-      {/* INITIATIVES */}
-      <section className="py-20">
+      {/* CORE TEAM */}
+      <section className="py-20 font-poppins">
         <div className="container mx-auto px-4 mb-12 text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)] bg-clip-text text-transparent">
-              Our Initiatives
+            <span
+              className="text-[#fe0c0c] tracking-wide"
+              style={{ letterSpacing: "0.06em" }}
+            >
+              Our Team
             </span>
           </h2>
-        <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
-            Explore our programs - each represents a key pillar of our mission.
+          <p
+            className="text-lg text-neutral-300 max-w-3xl mx-auto"
+            style={{ color: "#E6E2DA" }}
+          >
+            Meet the architects of an unforgettable experience.
           </p>
+
+          {/* Render core team here */}
+          <CoreTeam />
         </div>
+
         <DAAGallery />
       </section>
 
@@ -90,7 +114,9 @@ export default function DAAPage() {
                   <div className="inline-flex p-4 rounded-xl bg-[#E50914] mb-4 shadow-[0_10px_30px_-12px_rgba(229,9,20,0.6)]">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-4xl font-bold mb-2 text-white">{stat.value}</div>
+                  <div className="text-4xl font-bold mb-2 text-white">
+                    {stat.value}
+                  </div>
                   <div className="text-sm text-neutral-400">{stat.label}</div>
                 </div>
               );

@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "@/lib/utils"
-import { motion, type MotionValue } from "motion/react"
+import { motion, type MotionValue } from "framer-motion"
 import Link from "next/link"
 
 export const GoogleGeminiEffect = ({
