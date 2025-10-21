@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Suspense } from "react"
 import { Poppins } from "next/font/google";
+import { Navigation } from "@/components/Navigation"
 import "./globals.css"
 
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "Experience three days of innovation, entertainment, and celebration at Horizon Fest 2025. Organized by Directorate of Alumni Affairs."
 };
+
 
 export default function RootLayout({
   children,
