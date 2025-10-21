@@ -8,8 +8,7 @@ export function Footer() {
     Festival: [
       { label: "About", href: "/about" },
       { label: "Events", href: "/events" },
-      { label: "Schedule", href: "/schedule" },
-      { label: "Venue", href: "/venue" },
+     // { label: "Venue", href: "/venue" },
     ],
     Support: [
       { label: "FAQ", href: "/faq" },
@@ -20,7 +19,6 @@ export function Footer() {
     Account: [
       { label: "Login", href: "/login" },
       { label: "Register", href: "/register" },
-      { label: "My Tickets", href: "/my-tickets" },
       { label: "Profile", href: "/profile" },
     ],
   }

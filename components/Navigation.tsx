@@ -26,15 +26,14 @@ export function Navigation() {
 
   const links = useMemo(
     () => [
-      { href: "/events", label: "Events" },
-      { href: "/schedule", label: "Schedule" },
-      { href: "/my-tickets", label: "My Tickets" },
       { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
+      { href: "/events", label: "Events" },
       { href: "/daa", label: "DAA" },
+      { href: "/initiatives", label: "Initiatives" },
+      //{ href: "/Sponsors", label: "Sponsors" },
     ],
-    [],
-  )
+    []
+  );
 
   return (
     <header
@@ -120,7 +119,7 @@ export function Navigation() {
                   "bg-[#E50914] hover:bg-[#B20710]",
                 )}
               >
-                <Link href="/book-tickets">Book</Link>
+                <Link href="/Register-Now">REGISTER</Link>
               </Button>
             </div>
 
