@@ -1,6 +1,5 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { EventsGrid } from "@/components/events-grid"
 
@@ -25,8 +24,6 @@ export function EventsShowcase() {
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
-        
-
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-neutral-100">
             Discover the{" "}
             <span className="bg-[conic-gradient(from_210deg,#E50914,#B20710,#E50914)] bg-clip-text text-transparent drop-shadow-[0_10px_30px_rgba(229,9,20,0.35)]">
@@ -34,7 +31,7 @@ export function EventsShowcase() {
             </span>
           </h2>
           <p className="text-lg text-neutral-300/80 max-w-2xl mx-auto">
-            From music to technology, sports to arts - something for everyone.
+            From competitions to summits, innovation to entertainment - explore our flagship events.
           </p>
         </div>
 

@@ -1,25 +1,18 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
+import { useRef } from "react"
+import Autoplay from "embla-carousel-autoplay"
+import Image from "next/image"
+import Link from "next/link"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Card, CardContent } from "@/components/ui/card"
 
 export function DAAGallery() {
   const items = [
     {
       id: "global-tech-conclave",
       title: "Global Tech Conclave",
-      description:
-        "Guidance. Growth. Great minds — SRM Global Tech Conclave 2024.",
+      description: "Guidance. Growth. Great minds — SRM Global Tech Conclave 2024.",
       image: "/events/gtc.jpeg",
     },
     {
@@ -52,9 +45,9 @@ export function DAAGallery() {
       description: "Recognition, camaraderie, inspiration",
       image: "/events/embrace.jpeg",
     },
-  ];
+  ]
 
-  const plugin = useRef(Autoplay({ delay: 1300, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 1300, stopOnInteraction: true }))
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-[#0f0f0f] text-neutral-100">
@@ -71,10 +64,7 @@ export function DAAGallery() {
         >
           <CarouselContent>
             {items.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className="md:basis-1/2 lg:basis-1/3 group"
-              >
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 group">
                 <Link href={`/initiatives#${item.id}`}>
                   <div className="p-1">
                     <Card className="overflow-hidden border border-neutral-800 bg-neutral-900 transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:shadow-[#E50914]/30 group-hover:border-[#E50914] group-hover:-translate-y-1">
@@ -106,5 +96,5 @@ export function DAAGallery() {
         </Carousel>
       </div>
     </section>
-  );
+  )
 }

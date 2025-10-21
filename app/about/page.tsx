@@ -152,7 +152,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
-              <Badge className="mb-8 border border-amber-300/20 bg-amber-300/10 text-amber-300 text-sm uppercase tracking-widest px-4 py-2">
+              <Badge className="mb-8 border border-[#E50914]/40 bg-[#E50914]/15 text-[#E50914] text-sm uppercase tracking-widest px-4 py-2">
                 About Horizon Fest
               </Badge>
             </motion.div>

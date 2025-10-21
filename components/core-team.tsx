@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { useRef, MouseEvent } from "react";
+import Image from "next/image"
+import { useRef, type MouseEvent } from "react"
 
 const team = {
   secretary: {
@@ -41,44 +41,38 @@ const team = {
     { name: "Gokul", title: "Creative Coordinator", image: "gokul.png" },
     { name: "Surya", title: "Creative Coordinator", image: "surya.jpg" },
   ],
-};
+}
 
 function Card({
   person,
 }: {
-  person: { name: string; title?: string; image: string };
+  person: { name: string; title?: string; image: string }
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null)
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } =
-      cardRef.current.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
-    const rotateX = (y / height - 0.5) * -30;
-    const rotateY = (x / width - 0.5) * 30;
-    const glowX = (x / width) * 100;
-    const glowY = (y / height) * 100;
-    cardRef.current.style.setProperty("--rotate-x", `${rotateX}deg`);
-    cardRef.current.style.setProperty("--rotate-y", `${rotateY}deg`);
-    cardRef.current.style.setProperty("--glow-x", `${glowX}%`);
-    cardRef.current.style.setProperty("--glow-y", `${glowY}%`);
-  };
+    if (!cardRef.current) return
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - left
+    const y = e.clientY - top
+    const rotateX = (y / height - 0.5) * -30
+    const rotateY = (x / width - 0.5) * 30
+    const glowX = (x / width) * 100
+    const glowY = (y / height) * 100
+    cardRef.current.style.setProperty("--rotate-x", `${rotateX}deg`)
+    cardRef.current.style.setProperty("--rotate-y", `${rotateY}deg`)
+    cardRef.current.style.setProperty("--glow-x", `${glowX}%`)
+    cardRef.current.style.setProperty("--glow-y", `${glowY}%`)
+  }
 
   const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.setProperty("--rotate-x", "0deg");
-    cardRef.current.style.setProperty("--rotate-y", "0deg");
-  };
+    if (!cardRef.current) return
+    cardRef.current.style.setProperty("--rotate-x", "0deg")
+    cardRef.current.style.setProperty("--rotate-y", "0deg")
+  }
 
   return (
-    <div
-      ref={cardRef}
-      className="profile-card w-full"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div ref={cardRef} className="profile-card w-full" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       {/* Use Styled-JSX instead of a plain style tag */}
       <style jsx>{`
         .profile-card {
@@ -163,13 +157,11 @@ function Card({
         </div>
         <div className="profile-info">
           <h3 className="text-lg font-semibold text-white">{person.name}</h3>
-          {person.title && (
-            <p className="mt-2 text-sm text-neutral-300">{person.title}</p>
-          )}
+          {person.title && <p className="mt-2 text-sm text-neutral-300">{person.title}</p>}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default function CoreTeam() {
@@ -199,5 +191,5 @@ export default function CoreTeam() {
         </div>
       </div>
     </section>
-  );
+  )
 }
