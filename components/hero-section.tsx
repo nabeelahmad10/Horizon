@@ -128,7 +128,7 @@ export function HeroSection() {
           </h1>
 
           <p className="mx-auto max-w-3xl text-base sm:text-xl text-neutral-200/80">
-            Where innovation crashes into celebration — no spectators, only main
+            Where innovation crashes into celebration - no spectators, only main
             characters.
           </p>
 

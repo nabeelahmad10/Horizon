@@ -119,7 +119,7 @@ export function Navigation() {
                   "bg-[#E50914] hover:bg-[#B20710]",
                 )}
               >
-                <Link href="/Register-Now">REGISTER</Link>
+                <Link href="/Register-Now">Register</Link>
               </Button>
             </div>
 
